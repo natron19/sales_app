@@ -34,6 +34,8 @@ gem 'rails_12factor', '~> 0.0.3'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 gem 'aws-sdk', '~> 2'
+
+gem 'stripe', '~> 1.57', '>= 1.57.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
