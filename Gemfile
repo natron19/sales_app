@@ -36,6 +36,9 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'aws-sdk', '~> 2'
 
 gem 'stripe', '~> 1.57', '>= 1.57.1'
+
+gem 'httparty', '~> 0.14.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -48,6 +51,10 @@ gem 'stripe', '~> 1.57', '>= 1.57.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'capybara'
+  gem 'stripe-ruby-mock', '~> 2.3.1', :require => 'stripe_mock'
+  gem 'database_cleaner'
 end
 
 group :development do
