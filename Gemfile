@@ -30,6 +30,10 @@ gem 'devise', '~> 4.2'
 gem 'paperclip', '~> 5.1'
 
 gem 'rails_12factor', '~> 0.0.3'
+
+gem 'figaro', '~> 1.1', '>= 1.1.1'
+
+gem 'aws-sdk', '~> 2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -76,4 +76,29 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+# SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+   :user_name            => ENV['GMAIL_SMTP_USER'],
+   :password             => ENV['GMAIL_SMTP_PASSWORD'],
+   :authentication       => "plain",
+  :enable_starttls_auto => true
+  }
+  config.action_mailer.default_url_options = {
+    :host => 'natron-sales-app.herokuapp.com'
+  }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_host_name: ENV["S3_HOST_NAME"],
+    s3_credentials: {
+      bucket: ENV["S3_BUCKET_NAME"],
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+      s3_region: ENV["AWS_REGION"]
+    }
+  }
 end
