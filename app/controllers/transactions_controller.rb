@@ -1,6 +1,8 @@
 class TransactionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create]
 
+  before_filter :strip_iframe_protection
+
   def new
     @product = Product.find_by!(permalink: params[:permalink])
   end
@@ -8,6 +10,11 @@ class TransactionsController < ApplicationController
   def pickup
     @sale = Sale.find_by!(guid: params[:guid])
     @product = @sale.product
+  end
+
+  def iframe
+    @product = Product.find_by!(permalink: params[:permalink])
+    @sale = Sale.new(product_id: @product)
   end
 
   def create
@@ -45,6 +52,12 @@ class TransactionsController < ApplicationController
     send_data resp.body,
       :filename => File.basename(filename),
       :content_type => resp.headers['Content-Type']
+  end
+
+  private
+
+  def strip_iframe_protection
+    response.headers.delete('X-Frame-Options')
   end
 
 end

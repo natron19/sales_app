@@ -39,6 +39,8 @@ gem 'stripe', '~> 1.57', '>= 1.57.1'
 
 gem 'httparty', '~> 0.14.0'
 
+gem 'aasm'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
