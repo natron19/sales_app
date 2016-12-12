@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :products
   devise_for :users
 
+  resources :subscriptions, only: [:index, :new, :create]
+
   get '/buy/:permalink', to: 'transactions#new', as: :show_buy
   post '/buy/:permalink', to: 'transactions#create', as: :buy
   get '/pickup/:guid', to: 'transactions#pickup', as: :pickup
