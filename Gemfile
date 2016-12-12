@@ -41,6 +41,10 @@ gem 'httparty', '~> 0.14.0'
 
 gem 'aasm'
 
+gem 'docverter'
+
+gem 'paper_trail', '~> 6.0', '>= 6.0.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -18,27 +18,19 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    product = Product.find_by!(
-      permalink: params[:permalink]
-      )
-
-    token = params[:stripeToken]
-
-    begin
-      charge = Stripe::Charge.create(
-        amount: product.price,
-        currency: "usd",
-        source: token,
-        description: params[:stripeEmail]
-      )
-      @sale = product.sales.create!(
-        email: params[:stripeEmail],
-        stripe_id: charge.id
-        )
-      redirect_to pickup_url(guid: @sale.guid)
-    rescue Stripe::CardError => e
-      #the card has been declined or some other error has occured
-      @error = e
+    @product = Product.find_by!(
+    permalink: params[:permalink]
+    )
+    sale = @product.sales.create(
+      amount: @product.price,
+      email: params[:email],
+      stripe_token: params[:stripeToken]
+    )
+    sale.process!
+    if sale.finished?
+      redirect_to pickup_url(guid: sale.guid)
+    else
+      flash.now[:alert] = sale.error
       render :new
     end
   end
